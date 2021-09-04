@@ -26,7 +26,8 @@ class Sharefile:
     def run_server(self):
         print("Getting Your Local Ip:", self.ip)
         print("Hosting Local Server in Local Network !")
-        os.system(f"python -m http.server {self.port} --directory {self.file_path}")
+        os.system(
+            f"python -m http.server {self.port} --directory {self.file_path}")
 
     def show_qr(self):
         print("Reading Qr Code...")
