@@ -4,7 +4,7 @@
 ### A simple file sharing tool written in python
 
 ## Installation
-#### If you are using linux you can directly Run executable --> [download]()
+#### If you are using linux you can directly Run executable --> [download](https://github.com/ASACHIT/shareit-tool/releases/download/shareit-linux/shareit)
 
 **Running Executable**
 ```bash
