@@ -4,8 +4,12 @@
 ### A simple file sharing tool written in python
 
 ## Installation
-#### If you are using Windows os you can directly Run .exe file --> [download](https://github.com/ASACHIT/shareit-tool/releases/download/shareit/sharefiles.exe)
+#### If you are using linux you can directly Run executable --> [download]()
 
+**Running Executable**
+```bash
+  ./shareit
+```  
 **Running Code directly**
 ```bash
   git clone https://github.com/ASACHIT/shareit-tool.git
@@ -13,6 +17,7 @@
   pip3 install -r requirements.txt
   python3 main.py
 ```
+
     
 ## Features
 

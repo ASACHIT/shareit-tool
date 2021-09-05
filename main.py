@@ -1,5 +1,4 @@
 import os
-import socket
 import threading
 
 import cv2
@@ -12,11 +11,10 @@ class Sharefile:
         self.port = port
 
     def create_qr_code(self):
-        self.ip = socket.gethostbyname(socket.gethostname())
         print("Generating Link...")
         if self.port == "":
             self.port = 8000
-        hosted_link = f"http://{self.ip}:{self.port}"
+        hosted_link = f"http://0.0.0.0:{self.port}"
         print(hosted_link)
         print("Generating QR Code...")
         qrcode_image = qrcode.make(hosted_link)
@@ -24,19 +22,18 @@ class Sharefile:
         qrcode_image.save("qrcode.png")
 
     def run_server(self):
-        print("Getting Your Local Ip:", self.ip)
-        print("Hosting Local Server in Local Network !")
+        print("Serving Local Server in Local Network !")
         os.system(
-            f"python -m http.server {self.port} --directory {self.file_path}")
+            f"python3 -m http.server {self.port} --directory {self.file_path}")
 
     def show_qr(self):
         print("Reading Qr Code...")
         img_read = cv2.imread("qrcode.png")
-        print("Displaying QR CODE | Scan It Before it get Losts !!")
+        print("Displaying QR CODE | Scan It Before it get Lost !!")
         cv2.imshow("Scan Qr code and Open Link", img_read)
         cv2.waitKey(20000)
         cv2.destroyAllWindows()
-        os.system("del qrcode.png")
+        os.system("rm qrcode.png")
 
 
 # _-------------------------------------------------------
