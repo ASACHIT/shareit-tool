@@ -5,6 +5,7 @@
 
 ## Installation
 #### If you are using Windows os you can directly Run .exe file --> [download](https://github.com/ASACHIT/shareit-tool/releases/download/shareit/sharefiles.exe)
+#### If you are using Linux then - https://github.com/ASACHIT/shareit-tool/tree/for-linux
 
 **Running Code directly**
 ```bash
