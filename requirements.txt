@@ -1,3 +1,2 @@
 qrcode
 opencv-python
-Pillow
