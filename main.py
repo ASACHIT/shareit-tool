@@ -50,7 +50,6 @@ class Sharefile:
 
 # ------------------------------------------------------
 def run():
-
     try:
         filepath = input("Input File or Folder Path 📂 To be Shared ~#")
         port = input("Input Port Number 🔢 Enter(Default:8000) ~#")
