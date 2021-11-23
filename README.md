@@ -1,5 +1,5 @@
 
-# Share it  
+# Share IT  
 
 ### A simple file sharing tool written in python
 
