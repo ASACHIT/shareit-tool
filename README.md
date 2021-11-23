@@ -26,8 +26,8 @@ Then After
 
 ## Screenshots
 
-![App Screenshot](https://cdn.discordapp.com/attachments/881148108602503218/883796140938649620/unknown.png)
-![App Screenshot](https://cdn.discordapp.com/attachments/881148108602503218/883947894707716116/unknown.png)
+![App Screenshot](screenshots/img1.png)
+![App Screenshot](screenshots/img2.png)
 
   
 ## Demo
