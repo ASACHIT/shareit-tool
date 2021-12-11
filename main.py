@@ -1,6 +1,7 @@
 import os
 import time
 import queue
+import subprocess
 import socket
 import threading
 from qrcode import QRCode
@@ -33,8 +34,8 @@ class SpawnPythonServerTask(Task):
         self.dir_ = dir_
 
     def run(self):
-        os.system(
-            "python3 -m http.server {} --directory {} > /dev/null".format(self.port, self.dir_))
+        subprocess.Popen(
+            "python3 -m http.server {} --directory {}".format(self.port, self.dir_).split(" "))
 
 
 class CreateQRCodeTask(Task):
@@ -92,5 +93,7 @@ if __name__ == "__main__":
             port = int(input("Port: "))
             filepath = input("Filepath: ")
             task_queue.put(CompleteTask(filepath, port, task_queue))
+            time.sleep(1)
+
     except KeyboardInterrupt:
         print("IDK How to Handle this.")
