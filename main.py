@@ -7,6 +7,7 @@ import threading
 from qrcode import QRCode
 from abc import ABC, abstractmethod
 
+
 class Task(ABC):
     @abstractmethod
     def run(self):
@@ -14,6 +15,11 @@ class Task(ABC):
 
 
 task_queue: queue.Queue[Task] = queue.Queue()
+
+
+current_ports = []
+
+lock = threading.Lock()
 
 
 class TaskQueue(threading.Thread):
@@ -34,6 +40,10 @@ class SpawnPythonServerTask(Task):
         self.dir_ = dir_
 
     def run(self):
+        lock.acquire()
+        current_ports.append({"port": self.port, "dir": self.dir_})
+        lock.release()
+
         subprocess.Popen(
             "python3 -m http.server {} --directory {}".format(self.port, self.dir_).split(" "))
 
@@ -68,7 +78,7 @@ class CompleteTask(Task):
 
 if __name__ == "__main__":
     BANNER = """
-    *****************************************************   
+    *****************************************************
     *    ____  _   _    _    ____  _____   ___ _____    *
     *   / ___|| | | |  / \  |  _ \| ____| |_ _|_   _|   *
     *   \___ \| |_| | / _ \ | |_) |  _|    | |  | |     *
@@ -79,7 +89,7 @@ if __name__ == "__main__":
     *   https://github.com/ASACHIT/shareit-tool.git     *
     *****************************************************
     """
-    
+
     print(BANNER)
 
     try:
@@ -90,10 +100,27 @@ if __name__ == "__main__":
             taskDaemon.start()
 
         while True:
-            port = int(input("Port: "))
-            filepath = input("Filepath: ")
-            task_queue.put(CompleteTask(filepath, port, task_queue))
-            time.sleep(1)
+            print("What do you want to do?")
+            print("1. Share a file.")
+            print("2. Print currently shared files.")
+            print("3. Exit.")
+
+            choice = int(input("Enter your choice: "))
+
+            if choice == 1:
+                filepath = input("Enter the file path: ")
+                port = int(input("Enter the port: "))
+                task_queue.put(CompleteTask(filepath, port, task_queue))
+                time.sleep(2)
+            elif choice == 2:
+                lock.acquire()
+                print(current_ports)
+                lock.release()
+            elif choice == 3:
+                break
+            else:
+                print("Invalid choice.")
+
 
     except KeyboardInterrupt:
         print("IDK How to Handle this.")
