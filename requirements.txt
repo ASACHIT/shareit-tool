@@ -1,2 +1,1 @@
 qrcode[pil]
-opencv-python
